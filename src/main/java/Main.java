@@ -1,11 +1,24 @@
-import domain.Graph;
+import exception.NotRoute;
+import manager.TravelManager;
+import utils.Config;
 
 /**
  * @author luiz.maestri
  * @since 23/03/17
  */
-public class Main {
+class Main {
     public static void main(String[] args) {
-        Graph graph = new Graph(args[0]);
+        Config config = new Config();
+        String ironMesh = config.getProperty("ironMesh");
+        String strTravels = config.getProperty("travels");
+        String[] travels = strTravels.split("--");
+        for (String travel : travels){
+            TravelManager manager = new TravelManager(ironMesh, travel);
+            try {
+                System.out.println(manager.getTravelDistance());
+            } catch (NotRoute notRoute) {
+                System.out.println(notRoute.getMessage());
+            }
+        }
     }
 }
