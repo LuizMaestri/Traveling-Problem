@@ -20,7 +20,7 @@ public class IronMesh {
         }
     }
 
-    protected Route[] getRoutes() {
+    Route[] getRoutes() {
         return routes;
     }
 
