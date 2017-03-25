@@ -7,12 +7,12 @@ import junit.framework.TestCase;
  * @since 23/03/17
  */
 public class RouteTest extends TestCase{
-    private String stringRoute = "AB5";
     private Route route;
 
     @Override
     protected void setUp() throws Exception {
-        route = new Route(stringRoute);
+        super.setUp();
+        route = new Route("AB5");
     }
 
     public void testOrigin(){

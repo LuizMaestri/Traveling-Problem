@@ -4,44 +4,30 @@ package domain;
  * @author luiz.maestri
  * @since 23/03/17
  */
-public class Route {
-    private char origin;
-    private char destination;
+public class Route  extends TravelRoute{
     private int distance;
 
-    public Route() {
-        new Route(null);
-    }
-
-    public Route(String route){
-        if (route != null){
-            setOrigin(route.charAt(0));
-            setDestination(route.charAt(1));
-            setDistance(Character.getNumericValue(route.charAt(2)));
-        }
-    }
-
-    public char getOrigin() {
-        return origin;
-    }
-
-    public void setOrigin(char origin) {
-        this.origin = origin;
-    }
-
-    public char getDestination() {
-        return destination;
-    }
-
-    public void setDestination(char destination) {
-        this.destination = destination;
+    Route(String route){
+        super(route.charAt(0), route.charAt(1));
+        setDistance(Character.getNumericValue(route.charAt(2)));
     }
 
     public int getDistance() {
         return distance;
     }
 
-    public void setDistance(int distance) {
+    private void setDistance(int distance) {
         this.distance = distance;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Route){
+            Route routeCompare = (Route) obj;
+            boolean equals = super.equals(routeCompare);
+            equals = equals && this.getDistance() == routeCompare.getDistance();
+            return equals;
+        }
+        return false;
     }
 }
